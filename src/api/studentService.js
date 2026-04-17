@@ -1,7 +1,3 @@
-// src/api/studentService.js
-
-// Using relative path because of Vite proxy configured in vite.config.js
-// which points `/api` to the backend running at `http://localhost:5000`
 const API_URL = "/api/students";
 
 export const fetchStudents = async () => {
