@@ -1,4 +1,7 @@
-const API_URL = "/api/students";
+const BASE_URL = "https://student-management-system-backend-1-pg9z.onrender.com";
+const API_URL = `${BASE_URL}/api/students`;
+
+export { BASE_URL };
 
 export const fetchStudents = async () => {
     try {

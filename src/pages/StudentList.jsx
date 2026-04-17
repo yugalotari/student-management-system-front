@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Edit2, Trash2 } from 'lucide-react';
 import { useOutletContext, useNavigate } from 'react-router-dom';
-import { fetchStudents, deleteStudent } from '../api/studentService';
+import { fetchStudents, deleteStudent, BASE_URL } from '../api/studentService';
 
 export default function StudentList() {
   const { searchQuery } = useOutletContext();
@@ -94,7 +94,11 @@ export default function StudentList() {
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-gray-200 rounded-full overflow-hidden shrink-0 ring-2 ring-gray-100 group-hover:ring-blue-100 transition-all">
                         {student.photo || student.photo_url ? (
-                          <img src={student.photo || student.photo_url} alt={student.name} className="w-full h-full object-cover" />
+                          <img 
+                            src={(student.photo || student.photo_url).startsWith('http') ? (student.photo || student.photo_url) : `${BASE_URL}${student.photo || student.photo_url}`} 
+                            alt={student.name} 
+                            className="w-full h-full object-cover" 
+                          />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center text-gray-500 text-sm font-bold bg-blue-50">
                             {(student.name || '?').charAt(0).toUpperCase()}

@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { UploadCloud } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { fetchStudentById, saveStudent } from '../api/studentService';
+import { fetchStudentById, saveStudent, BASE_URL } from '../api/studentService';
 
 const studentSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -227,7 +227,11 @@ export default function StudentForm() {
             />
             {photoPreview ? (
               <div className="flex flex-col items-center gap-3">
-                <img src={photoPreview} alt="Preview" className="w-24 h-24 object-cover rounded shadow-md border border-gray-200" />
+                <img 
+                  src={photoPreview.startsWith('blob:') || photoPreview.startsWith('http') ? photoPreview : `${BASE_URL}${photoPreview}`} 
+                  alt="Preview" 
+                  className="w-24 h-24 object-cover rounded shadow-md border border-gray-200" 
+                />
                 <span className="text-blue-600 font-medium hover:underline">Change photo</span>
               </div>
             ) : (

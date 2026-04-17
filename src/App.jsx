@@ -10,10 +10,11 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>
+          <Route index element={<Navigate to="/students" replace />} />
           <Route path="students" element={<StudentList />} />
           <Route path="students/new" element={<StudentForm />} />
           <Route path="students/edit/:id" element={<StudentForm />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/students" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>
